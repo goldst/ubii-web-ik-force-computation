@@ -40,7 +40,7 @@ class Processor {
         this.poses = [];
         this.calculatedPoses = [];
         this.humanIK = new humanIK_1.default();
-        this.options = Object.assign({ urlServices: 'http://localhost:8102/services', urlTopicData: 'ws://localhost:8104/topicdata', topicIKTargets: '/avatar/ik_target', useDevicePrefixIKTarget: false, topicCurrentPose: '/avatar/ik_target', useDevicePrefixCurrentPose: false, topicVelocities: '/avatar/ik_target', useDevicePrefixVelocities: false, publishIntervalMs: 20, onTargetsReceived: () => { }, onPoseComputed: () => { }, onVelocitiesPublished: () => { }, configureInstance: true, skipUbii: false }, options);
+        this.options = Object.assign({ urlServices: 'http://localhost:8102/services', urlTopicData: 'ws://localhost:8104/topicdata', topicIKTargets: '/avatar/ik_target', useDevicePrefixIKTarget: false, topicCurrentPose: '/avatar/current_pose/list', useDevicePrefixCurrentPose: false, topicVelocities: '/avatar/target_velocities', useDevicePrefixVelocities: false, publishIntervalMs: 20, onTargetsReceived: () => { }, onPoseComputed: () => { }, onVelocitiesPublished: () => { }, configureInstance: true, skipUbii: false }, options);
         if (this.options.skipUbii) {
             this.start();
             return;
