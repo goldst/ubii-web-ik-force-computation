@@ -41,9 +41,9 @@ export class Processor {
             urlTopicData: 'ws://localhost:8104/topicdata',
             topicIKTargets: '/avatar/ik_target',
             useDevicePrefixIKTarget: false,
-            topicCurrentPose: '/avatar/ik_target',
+            topicCurrentPose: '/avatar/current_pose/list',
             useDevicePrefixCurrentPose: false,
-            topicVelocities: '/avatar/ik_target',
+            topicVelocities: '/avatar/target_velocities',
             useDevicePrefixVelocities: false,
             publishIntervalMs: 20,
             onTargetsReceived: () => {/*do nothing*/},
@@ -181,7 +181,7 @@ export class Processor {
      *   elements with all of the IDs 'HEAD', 'VIEWING_DIRECTION', 'HIP',
      *   'HAND_LEFT', 'HAND_RIGHT', 'FOOT_LEFT', 'FOOT_RIGHT'.
      */
-    onIKTargetsReceived(targets: ProtobufLibrary.ubii.dataStructure.IObject3DList){
+    onIKTargetsReceived(targets: ProtobufLibrary.ubii.dataStructure.IObject3DList) {
         if(!targets.elements || !targets.elements.length) {
             console.error('Received IK targets do not contain data');
             return;
@@ -206,7 +206,7 @@ export class Processor {
      * @param pose Current pose which is used to calculate required
      *   forces
      */
-    onCurrentPoseReceived(pose: ProtobufLibrary.ubii.dataStructure.IObject3DList){
+    onCurrentPoseReceived(pose: ProtobufLibrary.ubii.dataStructure.IObject3DList) {
         if(!pose.elements) {
             console.error('Received pose targets do not contain useful data');
             return;

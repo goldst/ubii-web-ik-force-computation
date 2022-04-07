@@ -221,10 +221,9 @@
                 topicIKTargets: topicInput.value || '/avatar/ik_target',
                 useDevicePrefixIKTarget: serviceURLInput.checked,
                 onTargetsReceived: logTargets,
-                onPoseComputed: logPose
+                onPoseComputed: logPose,
+                onVelocitiesPublished: logForces
             });
-
-            console.log('started');
         }
 
         function stop() {
@@ -264,7 +263,7 @@
         }
 
         function logForces(forces) {
-            forces.forEach(p => {
+            forces.object3DList.elements.forEach(p => {
                 forceElements[p.id].innerHTML = `
                     <code>pos x</code><code>${p.pose.position.x.toFixed(9)}</code>
                     <code>pos y</code><code>${p.pose.position.y.toFixed(9)}</code>
