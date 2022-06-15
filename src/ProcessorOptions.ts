@@ -13,7 +13,7 @@ import ProtobufLibrary from '@tum-far/ubii-msg-formats/dist/js/protobuf';
 export interface ProcessorOptions {
     /**
      * The URL for the Ubi Interact services endpoint. Defaults to
-     * 'http://localhost:8102/services' if not set. Value has no impact
+     * 'http://localhost:8102/services/json' if not set. Value has no impact
      * when {skipUbii} is true.
      */
     urlServices: string;
@@ -30,8 +30,17 @@ export interface ProcessorOptions {
      * Defaults to '/avatar/ik_target' if not set. A device will be
      * prepended to the topic if {useDevicePrefixIKTarget} is set to true.
      * Value has no impact when {skipUbii} is true.
+     * @deprecated this option does not influence the outcome anymore due
+     *   to the use of tags for topic discovery
      */
     topicIKTargets: string;
+
+    /**
+     * This module detects other components and their topics by using
+     * tags. This option is the list of tags for the IKTargets topic.
+     * Defaults to  'ik targets'
+     */
+    tagsIKTargets: string[];
 
     /**
      * Determines whether the Ubi Interact topic for IK should start with
@@ -41,6 +50,8 @@ export interface ProcessorOptions {
      * '/8d23bee1-a6c2-4695-969e-19cf12b313a6/web-ik-forces-processor/avatar/ik_target'.
      * Defaults to false if not set. Value has no impact when {skipUbii}
      * is true.
+     * @deprecated this option does not influence the outcome anymore due
+     *   to the use of tags for topic discovery
      */
     useDevicePrefixIKTarget: boolean;
 
@@ -49,8 +60,17 @@ export interface ProcessorOptions {
      * at. Defaults to '/avatar/current_pose/list' if not set. A device
      * will be prepended to the topic if {useDevicePrefixCurrentPose} is
      * set to true. Value has no impact when {skipUbii} is true.
+     * @deprecated this option does not influence the outcome anymore due
+     *   to the use of tags for topic discovery
      */
     topicCurrentPose: string;
+
+    /**
+     * This module detects other components and their topics by using
+     * tags. This option is the list of tags for the CurrentPose topic.
+     * Defaults to 'avatar', 'bones', 'pose'
+     */
+    tagsCurrentPose: string[];
 
     /**
      * Determines whether the Ubi Interact topic for current pose should
@@ -60,6 +80,8 @@ export interface ProcessorOptions {
      * '/8d23bee1-a6c2-4695-969e-19cf12b313a6/web-ik-forces-processor/avatar/current_pose/list'.
      * Defaults to false if not set. Value has no impact when {skipUbii}
      * is true.
+     * @deprecated this option does not influence the outcome anymore due
+     *   to the use of tags for topic discovery
      */
     useDevicePrefixCurrentPose: boolean;
 
@@ -69,8 +91,17 @@ export interface ProcessorOptions {
      * device will be prepended to the topic if
      * {useDevicePrefixVelocities} is set to true. Value has no impact when
      * {skipUbii} is true.
+     * @deprecated this option does not influence the outcome anymore due
+     *   to the use of tags for topic discovery
      */
     topicVelocities: string;
+
+    /**
+     * This module detects other components and their topics by using
+     * tags. This option is the list of tags for the Velocities topic.
+     * Defaults to 'avatar', 'bones', 'control', 'velocity'
+     */
+    tagsVelocities: string[];
 
     /**
      * Determines whether the Ubi Interact topic for velocities should
@@ -80,10 +111,13 @@ export interface ProcessorOptions {
      * '/8d23bee1-a6c2-4695-969e-19cf12b313a6/web-ik-forces-processor/avatar/target_velocities'.
      * Defaults to false if not set. Value has no impact when {skipUbii}
      * is true.
+     * @deprecated this option does not influence the outcome anymore due
+     *   to the use of tags for topic discovery
      */
     useDevicePrefixVelocities: boolean;
 
     /**
+     * Only when {useDevice} is enabled:
      * The interval in ms at which the velocities are being published.
      * Some information might be sent one or multiple intervals later if
      * the performance, eg of the callbacks {onTargetsReceived},
@@ -128,6 +162,16 @@ export interface ProcessorOptions {
      * case, no master node would be required, but all other
      * functionality, such as the {onTargetPublished} function, would
      * still work. Defaults to false if not set.
+     * When set to true, some callbacks will only work in combination
+     * with useDevice=true.
      */
     skipUbii: boolean;
+
+    /**
+     * By default, this module uses a processing module, but using this
+     * option, a device can be used to perform the same tasks. The default
+     * option is strongly recommended for production environments.
+     * SkipUbii only works completely when setting this option to true.
+     */
+    useDevice: boolean;
 }

@@ -1,4 +1,4 @@
-# ubii-web-ik-force-computation – Work in progress
+# ubii-web-ik-force-computation
 Ubi-Interact Inverse Kinematics and force computation for web browsers. This is a necessary step in physical embodiment scenarios, where users are represented virtually through a physical avatar.
 
 ## Usage
@@ -12,7 +12,7 @@ To calculate a full pose using inverse kinematics, this module receives IK targe
 To calculate the necessary forces and applying them to a physical avatar, this module needs to communicate with other Ubi-Interact components. [ubii-web-avatar-applier](https://github.com/goldst/ubii-web-target-publisher) simplifies this process using similar abstractions to this module as well.
 
 ### Online Demo
-The demo in this project is available at https://goldst.dev/ubii-web-ik-force-computation/dist/.
+The demo in this project is available at https://goldst.dev/ubii-web-ik-force-computation.
 
 ### Running the demo locally
 After cloning, install, and run the project:
@@ -48,13 +48,12 @@ For available options, see [ProcessorOptions.ts](./src/ProcessorOptions.ts).
 
 That's it! Other than supplying the options, no further configuration is necessary. If you want to stop the processor, just call `stop()` on the processor object.
 
-## Development status and contributing
-This project is work in progress. Let me know if you have any issues! Currently I'm not taking code contributions, because it is part of an university project. I am planing to open it up in June.
+## Technical Details
+The general structure of this project is similar to [ubii-web-target-publisher](https://github.com/goldst/ubii-web-target-publisher) and [ubii-web-avatar-applier](https://github.com/goldst/ubii-web-target-publisher), however, it is somewhat more complex:
 
-<!-- TODO replace section once bachelors thesis is finished>
+The Processor either directly (`useDevice===true`) or indirectly (`false`) creates an instance of HumanIK, a class which sets up bones and constraints using [IK.ts](https://github.com/goldst/ik.ts) and calculates them on demand. ik.ts is very constrained in the amount and kind of constraints it offers, thus, the human pose will not be completely realistic.
 
-Don't expect me to update this project that much once it's done :upside_down_face: but your code and documentation contributions are warmly welcomed. Make sure to create an issue first if you want to work on something and let me know there.
-<-->
+When `useDevice` is `false` (default setting), this module creates a processing module, which is doing the same thing, but has more potential for optimization. With some changes, it may run in a separate thread. The code for processing modules (folders `devices`, `nodes`, `processing` with the exception of `processing/ProcessingModuleAvatarMotionControls.ts`, `storage`) is taken from [ubii-node-nodejs](https://github.com/SandroWeber/ubii-node-nodejs), and only slightly modified – very generous broad were added so that it works with TypeScript, and some lines of code were changed to ensure compatibility with [ubii-node-webbrowser](https://github.com/SandroWeber/ubii-node-webbrowser).
 
 ## License
 [MIT](LICENSE)

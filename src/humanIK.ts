@@ -1,5 +1,249 @@
 import * as IK from 'ikts';
-import ProtobufLibrary from '@tum-far/ubii-msg-formats/dist/js/protobuf';
+import * as ProtobufLibrary from '@tum-far/ubii-msg-formats/dist/js/protobuf';
+
+/**
+ * Inlined file originally from PoseConfig.json.
+ */
+const poseConfig = {
+    'Hips': {
+        'boneName': 'mixamorig:Hips',
+        'joints': [
+            { 'to': 'Spine', 'length': 0.11 },
+            { 'to': 'LeftUpperLeg', 'length': 0.13 },
+            { 'to': 'RightUpperLeg', 'length': 0.13 }
+        ]
+    },
+    'LeftUpperLeg': {
+        'boneName': 'mixamorig:LeftUpLeg',
+        'joints': [
+            { 'to': 'LeftLowerLeg', 'length': 0.45 }
+        ]
+    },
+    'RightUpperLeg': {
+        'boneName': 'mixamorig:RightUpLeg',
+        'joints': [
+            { 'to': 'RightLowerLeg', 'length': 0.45 }
+        ]
+    },
+    'LeftLowerLeg': {
+        'boneName': 'mixamorig:LeftLeg',
+        'joints': [
+            { 'to': 'LeftFoot', 'length': 0.45 }
+        ]
+    },
+    'RightLowerLeg': {
+        'boneName': 'mixamorig:RightLeg',
+        'joints': [
+            { 'to': 'RightFoot', 'length': 0.45 }
+        ]
+    },
+    'LeftFoot': {
+        'boneName': 'mixamorig:LeftFoot',
+        'joints': []
+    },
+    'RightFoot': {
+        'boneName': 'mixamorig:RightFoot',
+        'joints': []
+    },
+    'Spine': {
+        'boneName': 'mixamorig:Spine',
+        'joints': [
+            { 'to': 'Chest', 'length': 0.11 }
+        ]
+    },
+    'Chest': {
+        'boneName': 'mixamorig:Spine1',
+        'joints': [
+            { 'to': 'UpperChest', 'length': 0.11 }
+        ]
+    },
+    'Neck': {
+        'boneName': 'mixamorig:Neck',
+        'joints': [
+            { 'to': 'Head', 'length': 0.11 },
+            { 'to': 'LeftShoulder', 'length': 0.13 },
+            { 'to': 'RightShoulder', 'length': 0.13 }
+        ]
+    },
+    'Head': {
+        'boneName': 'mixamorig:Head',
+        'joints': []
+    },
+    'LeftShoulder': {
+        'boneName': '',
+        'joints': [
+            { 'to': 'LeftUpperArm', 'length': 0.3 }
+        ]
+    },
+    'RightShoulder': {
+        'boneName': '',
+        'joints': [
+            { 'to': 'RightUpperArm', 'length': 0.3 }
+        ]
+    },
+    'LeftUpperArm': {
+        'boneName': 'mixamorig:LeftArm',
+        'joints': [
+            { 'to': 'LeftLowerArm', 'length': 0.3 }
+        ]
+    },
+    'RightUpperArm': {
+        'boneName': 'mixamorig:RightArm',
+        'joints': [
+            { 'to': 'RightLowerArm', 'length': 0.3 }
+        ]
+    },
+    'LeftLowerArm': {
+        'boneName': 'mixamorig:LeftForeArm',
+        'joints': []
+    },
+    'RightLowerArm': {
+        'boneName': 'mixamorig:RightForeArm',
+        'joints': []
+    },
+    'LeftHand': {
+        'boneName': 'mixamorig:LeftHand',
+        'joints': []
+    },
+    'RightHand': {
+        'boneName': 'mixamorig:RightHand',
+        'joints': []
+    },
+    'LeftToes': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightToes': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftThumbProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftThumbIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftThumbDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftIndexProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftIndexIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftIndexDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftMiddleProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftMiddleIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftMiddleDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftRingProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftRingIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftRingDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftLittleProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftLittleIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'LeftLittleDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightThumbProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightThumbIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightThumbDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightIndexProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightIndexIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightIndexDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightMiddleProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightMiddleIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightMiddleDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightRingProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightRingIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightRingDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightLittleProximal': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightLittleIntermediate': {
+        'boneName': '',
+        'joints': []
+    },
+    'RightLittleDistal': {
+        'boneName': '',
+        'joints': []
+    },
+    'UpperChest': {
+        'boneName': 'mixamorig:Spine2',
+        'joints': [
+            { 'to': 'Neck', 'length': 0.11 }
+        ]
+    }
+};
 
 /**
  * For calculation of a full human pose from a set of targets. Input and
@@ -29,7 +273,7 @@ export default class HumanIK {
 
         this.baseBone = new IK.Bone3D(
             new IK.V3(0, 1, 0),
-            new IK.V3(0, 1, 0)
+            new IK.V3(0, 1 + this.distanceBones('Hips', 'Spine'), 0)
         );
 
         // ==========
@@ -37,30 +281,29 @@ export default class HumanIK {
         // ==========
         this.chainHead = new IK.Chain3D();
         this.chainHead.addBone(this.baseBone); // Hips
-        this.chainHead.addConsecutiveBone(IK.X_AXE, 0.1); // Spine
-        this.chainHead.addConsecutiveBone(IK.X_AXE, 0.12); // Spine1
-        this.chainHead.addConsecutiveBone(IK.X_AXE, 0.1); // Spine2
-        this.chainHead.addConsecutiveBone(IK.X_AXE, 0.1); // Neck
-        this.chainHead.addConsecutiveBone(IK.X_AXE, 0.1); // Head
+        this.chainHead.addConsecutiveBone(IK.X_AXE, this.distanceBones('Spine', 'Chest')); // Spine
+        this.chainHead.addConsecutiveBone(IK.X_AXE, this.distanceBones('Chest', 'UpperChest')); // Spine1
+        this.chainHead.addConsecutiveBone(IK.X_AXE, this.distanceBones('UpperChest', 'Neck')); // Spine2
+        this.chainHead.addConsecutiveBone(IK.X_AXE, this.distanceBones('Neck', 'Head')); // Neck
         this.targetHead = new IK.V3(0, 2, 0);
         this.solver.add(this.chainHead, this.targetHead);
 
-        // ===============
-        // == Left Foot ==
-        // ===============
+        // ==============
+        // == Left Leg ==
+        // ==============
         const chainLeftFoot = new IK.Chain3D();
         chainLeftFoot.addBone(
             new IK.Bone3D(
                 new IK.V3(0, 0, 0), 
-                new IK.V3(-0.13, 0, 0)
+                new IK.V3(-this.distanceBones('Hips', 'LeftUpperLeg'), 0, 0)
             )
         ); // Hips
         chainLeftFoot.addConsecutiveHingedBone(
-            IK.Y_NEG, 0.5, 'global', IK.X_NEG,
+            IK.Y_NEG, this.distanceBones('LeftUpperLeg', 'LeftLowerLeg'), 'global', IK.X_NEG,
             120, 20, IK.Z_AXE
         ); // Upper leg
         chainLeftFoot.addConsecutiveHingedBone(
-            IK.Y_NEG, 0.5, 'global', IK.X_NEG,
+            IK.Y_NEG, this.distanceBones('LeftLowerLeg', 'LeftFoot'), 'global', IK.X_NEG,
             1, 120, IK.X_AXE
         ); // Lower leg
         chainLeftFoot.setRotorBaseboneConstraint(
@@ -73,22 +316,22 @@ export default class HumanIK {
         );
         this.chainLeftFoot = this.solver.chains[1];
 
-        // ================
-        // == Right Foot ==
-        // ================
+        // ===============
+        // == Right Leg ==
+        // ===============
         const chainRightFoot = new IK.Chain3D();
         chainRightFoot.addBone(
             new IK.Bone3D(
                 new IK.V3(0, 0, 0), 
-                new IK.V3(0.13, 0, 0)
+                new IK.V3(this.distanceBones('Hips', 'RightUpperLeg'), 0, 0)
             )
         ); // Hips
         chainRightFoot.addConsecutiveHingedBone(
-            IK.Y_NEG, 0.5, 'global', IK.X_NEG,
+            IK.Y_NEG, this.distanceBones('RightUpperLeg', 'RightLowerLeg'), 'global', IK.X_NEG,
             120, 20, IK.Z_AXE
         ); // Upper leg
         chainRightFoot.addConsecutiveHingedBone(
-            IK.Y_NEG, 0.5, 'global', IK.X_NEG,
+            IK.Y_NEG, this.distanceBones('RightLowerLeg', 'RightFoot'), 'global', IK.X_NEG,
             1, 120, IK.X_AXE
         ); // Lower leg
         chainRightFoot.setRotorBaseboneConstraint(
@@ -108,17 +351,17 @@ export default class HumanIK {
         chainLeftArm.addBone(
             new IK.Bone3D(
                 new IK.V3(0, 0, 0),
-                new IK.V3(-0.13, 0, 0)
+                new IK.V3(-this.distanceBones('Neck', 'LeftShoulder'), 0, 0)
             )
         ); // Shoulder
-        chainLeftArm.addConsecutiveBone(IK.X_NEG, 0.25);
-        chainLeftArm.addConsecutiveBone(IK.X_NEG, 0.25);
+        chainLeftArm.addConsecutiveBone(IK.Y_NEG, this.distanceBones('LeftShoulder', 'LeftUpperArm'));
+        chainLeftArm.addConsecutiveBone(IK.Y_NEG, this.distanceBones('LeftUpperArm', 'LeftLowerArm'));
         chainLeftArm.setRotorBaseboneConstraint(
-            'local', IK.X_NEG, 10
+            'local', IK.X_NEG, 1
         );
         this.targetLeftArm = new IK.V3();
         this.solver.connectChain(
-            chainLeftArm, 0, 5, 'start',
+            chainLeftArm, 0, 4, 'start',
             this.targetLeftArm
         );
         this.chainLeftArm = this.solver.chains[3];
@@ -130,17 +373,17 @@ export default class HumanIK {
         chainRightArm.addBone(
             new IK.Bone3D(
                 new IK.V3(0, 0, 0),
-                new IK.V3(0.13, 0, 0)
+                new IK.V3(this.distanceBones('Neck', 'RightShoulder'), 0, 0)
             )
         ); // Shoulder
-        chainRightArm.addConsecutiveBone(IK.Y_NEG, 0.25);
-        chainRightArm.addConsecutiveBone(IK.Y_NEG, 0.25);
+        chainRightArm.addConsecutiveBone(IK.Y_NEG, this.distanceBones('RightShoulder', 'RightUpperArm'));
+        chainRightArm.addConsecutiveBone(IK.Y_NEG, this.distanceBones('RightUpperArm', 'RightLowerArm'));
         chainRightArm.setRotorBaseboneConstraint(
             'local', IK.X_AXE, 10
         );
         this.targetRightArm = new IK.V3();
         this.solver.connectChain(
-            chainRightArm, 0, 5, 'start',
+            chainRightArm, 0, 4, 'start',
             this.targetRightArm
         );
         this.chainRightArm = this.solver.chains[4];
@@ -149,15 +392,15 @@ export default class HumanIK {
     solve(targets: ProtobufLibrary.ubii.dataStructure.IObject3D[]) {
         this.setTarget(targets, 'HIP', this.baseBone.start);
         this.setTarget(targets, 'HIP', this.baseBone.end);
+        this.setTarget(targets, 'HEAD', this.targetHead);
         this.setTarget(targets, 'FOOT_LEFT', this.targetLeftFoot);
         this.setTarget(targets, 'FOOT_RIGHT', this.targetRightFoot);
         this.setTarget(targets, 'HAND_LEFT', this.targetLeftArm);
         this.setTarget(targets, 'HAND_RIGHT', this.targetRightArm);
-        this.setTarget(targets, 'HEAD', this.targetHead);
 
         this.solver.update();
 
-        const headPos = targets.find(t => t.id === 'HEAD')?.pose?.position;
+        const headPos = targets.find(t => t.id === 'VIEWING_DIRECTION')?.pose?.position;
 
         if(
             !headPos ||
@@ -237,7 +480,7 @@ export default class HumanIK {
                     quaternion: this.quaternion(
                         this.chainHead.bones[1].start,
                         this.chainHead.bones[1].end,
-                        IK.Y_AXE
+                        IK.Y_NEG
                     )
                 }
             },
@@ -248,30 +491,31 @@ export default class HumanIK {
                     quaternion: this.quaternion(
                         this.chainHead.bones[2].start,
                         this.chainHead.bones[2].end,
-                        IK.Y_AXE
+                        IK.Y_NEG
                     )
                 }
             },
             {
                 id: 'Neck',
                 pose: {
-                    position: this.chainHead.bones[5].start,
+                    position: this.chainHead.bones[4].start,
                     quaternion: this.quaternion(
-                        this.chainHead.bones[5].start,
-                        this.chainHead.bones[5].end,
-                        IK.Y_AXE
+                        this.chainHead.bones[4].start,
+                        this.chainHead.bones[4].end,
+                        IK.Y_NEG
                     )
                 }
             },
             {
                 id: 'Head',
                 pose: {
-                    position: this.chainHead.bones[5].end,
-                    quaternion: this.quaternion(
-                        this.chainHead.bones[5].end,
+                    position: this.chainHead.bones[4].end,
+                    quaternion:  { x: 0, y: 0, z: 0, w: 0 } /*this.quaternion(
+                        this.chainHead.bones[4].end,
                         new IK.V3(headPos.x!, headPos.y!, headPos.z!),
-                        IK.Y_AXE
-                    )
+                        IK.Y_NEG
+                    )*/ // Rotation was removed because culmination of wrong values below
+                    // in the same chain lead to too much wobbling
                 }
             },
             {
@@ -295,7 +539,7 @@ export default class HumanIK {
                     quaternion: this.quaternion(
                         this.chainLeftArm.bones[1].start,
                         this.chainLeftArm.bones[1].end,
-                        IK.Z_NEG
+                        IK.X_NEG
                     )
                 }
             },
@@ -305,7 +549,8 @@ export default class HumanIK {
                     position: this.chainRightArm.bones[1].start,
                     quaternion: this.quaternion(
                         this.chainRightArm.bones[1].start,
-                        this.chainRightArm.bones[1].end
+                        this.chainRightArm.bones[1].end,
+                        IK.X_AXE
                     )
                 }
             },
@@ -316,7 +561,7 @@ export default class HumanIK {
                     quaternion: this.quaternion(
                         this.chainLeftArm.bones[2].start,
                         this.chainLeftArm.bones[2].end,
-                        IK.Z_AXE
+                        IK.X_NEG
                     )
                 }
             },
@@ -327,7 +572,7 @@ export default class HumanIK {
                     quaternion: this.quaternion(
                         this.chainRightArm.bones[2].start,
                         this.chainRightArm.bones[2].end,
-                        IK.Z_AXE
+                        IK.X_AXE
                     )
                 }
             },
@@ -572,17 +817,20 @@ export default class HumanIK {
             {
                 id: 'UpperChest',
                 pose: {
-                    position: this.chainHead.bones[4].start,
-                    quaternion: this.quaternion(
-                        this.chainHead.bones[4].start,
-                        this.chainHead.bones[4].end,
-                        IK.Y_AXE
-                    )
+                    position: this.chainHead.bones[3].start,
+                    quaternion: { x: -0.9191450300180579, y: 0, z: 0, w: 0.3939192985791677 } /*this.quaternion(
+                        this.chainHead.bones[3].start,
+                        this.chainHead.bones[3].end,
+                        IK.Y_NEG
+                    )*/
                 }
             },
         ];
     }
 
+    /**
+     * Sets a vector to the position of a specific ID
+     */
     setTarget(targets: ProtobufLibrary.ubii.dataStructure.IObject3D[], id: string, v: IK.V3) {
         const ubiiTarget = targets.find(t => t.id === id);
 
@@ -595,6 +843,33 @@ export default class HumanIK {
             ubiiTarget?.pose?.position?.y || v.y,
             ubiiTarget?.pose?.position?.z || v.z
         );
+    }
+
+    /**
+     * returns the distance between the starting points of distinct bones
+     */
+    distanceBones(boneNameA: keyof typeof poseConfig, boneNameB: keyof typeof poseConfig) {
+        const boneJointsA = poseConfig[boneNameA]?.joints;
+
+        if(!boneJointsA) {
+            console.error(
+                `Distance from bone ${String(boneNameA)} to ${String(boneNameB)} not found!`,
+                `${String(boneNameA)} was not found.`
+            );
+            return 0;
+        }
+
+        const joint = boneJointsA.find(joint => joint.to === boneNameB);
+
+        if(!joint) {
+            console.error(
+                `Distance from bone ${String(boneNameA)} to ${String(boneNameB)} not found!`,
+                `No direct connection to ${String(boneNameB)} was found.`
+            );
+            return 0;
+        }
+
+        return joint.length;
     }
 
     crossProduct(p1: IK.V3, p2: IK.V3) {
@@ -611,7 +886,7 @@ export default class HumanIK {
      * @param p2 
      * @returns 
      */
-    quaternion(p1: IK.V3, p2: IK.V3, direction: IK.V3 = IK.Y_NEG) {
+    quaternion(p1: IK.V3, p2: IK.V3, direction: IK.V3 = IK.Y_AXE) {
 
         const d2 = new IK.V3(
             p2.x - p1.x,
@@ -622,6 +897,7 @@ export default class HumanIK {
 
         // based on the first two answers of
         // https://stackoverflow.com/questions/1171849/finding-quaternion-representing-the-rotation-from-one-vector-to-another
+        // Proof at https://www.xarg.org/proof/quaternion-from-two-vectors/
         const cross = direction.cross(d2);
         const dot = direction.dot(d2);
 
